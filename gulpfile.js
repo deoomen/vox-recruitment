@@ -11,7 +11,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const { parallel } = require('gulp');
 
-gulp.task('vendor', (done) => {
+function vendorTask(done) {
   gulp
     .src('node_modules/bootstrap/dist/css/bootstrap.min.css')
     .pipe(gulp.dest(distDir + '/css'));
@@ -24,9 +24,9 @@ gulp.task('vendor', (done) => {
     .pipe(gulp.dest(distDir + '/js'));
 
   return done();
-});
+}
 
-gulp.task('scss', () => {
+function scssTask() {
   return gulp
     .src(resourcesDir + '/scss/*.scss')
     .pipe(sourcemaps.init())
@@ -34,22 +34,26 @@ gulp.task('scss', () => {
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(distDir + '/css'));
-});
+}
 
-gulp.task('js', () => {
+function jsTask() {
   return gulp
     .src(resourcesDir + '/js/*.js')
     .pipe(uglify())
     .pipe(gulp.dest(distDir + '/js'));
-});
+}
 
-gulp.task('watch', () => {
+function watchTask() {
   gulp.watch(resourcesDir + '/scss/*.scss', scssTask);
   gulp.watch(resourcesDir + '/js/*.js', jsTask);
-});
+}
 
+exports.vendor = vendorTask;
+exports.scss = scssTask;
+exports.js = jsTask;
+exports.watch = watchTask;
 exports.default = parallel(
-  'vendor',
-  'scss',
-  'js'
+  vendorTask,
+  scssTask,
+  jsTask
 );
