@@ -1,0 +1,17 @@
+body {
+    &.loading {
+        header,
+        main,
+        footer {
+            display: none;
+        }
+
+        #loader {
+            display: block;
+        }
+    }
+}
+
+#loader {
+    display: none;
+}

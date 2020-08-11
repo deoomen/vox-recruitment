@@ -1,18 +1,43 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-
     <title>Hello, world!</title>
-</head>
-<body>
-    <h1>Hello, world!</h1>
 
-    <script src="dist/jquery.slim.min.js"></script>
-    <script src="dist/popper.min.js"></script>
+    <script>
+        document.getElementsByTagName('html')[0].classList.remove('no-js');
+    </script>
+
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+<body class="loading">
+    <noscript>
+        Do pełnej funkcjonalności strony potrzebujesz włączonej obsługi skryptów.
+        Tu znajdziesz <a href="https://www.enable-javascript.com/pl/" target="_blank"> instrukcje, które pozwolą Ci włączyć skrypty w Twojej przeglądarce</a>.
+    </noscript>
+
+    <div id="loader">
+        Loading...
+    </div>
+
+    <header>
+
+    </header>
+
+    <main>
+        <h1>Hello, world!</h1>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="dist/js/jquery.slim.min.js"></script>
+    <script src="dist/js/popper.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/main.js"></script>
 </body>
 </html>
