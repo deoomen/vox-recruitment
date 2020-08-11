@@ -1,0 +1,26 @@
+{
+  "name": "vox-recruitment",
+  "version": "0.1.0",
+  "description": "Recruitment task for the VOX company.",
+  "dependencies": {
+    "bootstrap": "^4.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deoomen/vox-recruitment"
+  },
+  "keywords": [
+    "vox",
+    "recrutiment"
+  ],
+  "author": "deoomen <deoomen@pm.me>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/deoomen/vox-recruitment/issues"
+  },
+  "homepage": "https://github.com/deoomen/vox-recruitment#readme"
+}
