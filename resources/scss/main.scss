@@ -1,4 +1,6 @@
 body {
+    font-size: 16px;
+
     &.loading {
         header,
         main,
@@ -6,12 +8,20 @@ body {
             display: none;
         }
 
-        #loader {
+        > .loader {
             display: block;
         }
     }
+
+    > .loader {
+        display: none;
+    }
 }
 
-#loader {
-    display: none;
+.header {
+    &__slogan {
+        text-align: center;
+        font-size: 4rem;
+        margin: 1rem 0;
+    }
 }

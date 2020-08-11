@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <base href="/vox-recruitment/">
+
     <title>Hello, world!</title>
 
     <script>
@@ -19,16 +21,44 @@
         Tu znajdziesz <a href="https://www.enable-javascript.com/pl/" target="_blank"> instrukcje, które pozwolą Ci włączyć skrypty w Twojej przeglądarce</a>.
     </noscript>
 
-    <div id="loader">
+    <div class="loader">
         Loading...
     </div>
 
-    <header>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="assets/logo-vox.svg" alt="Logo VOX" loading="lazy">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#slider">
+                            Slider
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comments">
+                            Komentarze
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1 class="header__slogan">
+            Hello, world!
+        </h1>
     </header>
 
     <main>
-        <h1>Hello, world!</h1>
+
     </main>
 
     <footer>
