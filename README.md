@@ -6,3 +6,4 @@ Recruitment task for the VOX company.
 
 * PHP 7.4
 * Bootstrap 4
+* jQuery 3

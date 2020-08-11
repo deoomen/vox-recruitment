@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Recruitment task for the VOX company.",
   "dependencies": {
-    "bootstrap": "^4.5.2"
+    "bootstrap": "^4.5.2",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",

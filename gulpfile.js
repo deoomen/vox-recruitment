@@ -16,7 +16,11 @@ gulp.task('vendor', (done) => {
     .src('node_modules/bootstrap/dist/css/bootstrap.min.css')
     .pipe(gulp.dest(distDir + '/css'));
   gulp
-    .src('node_modules/bootstrap/dist/js/bootstrap.min.js')
+    .src([
+      'node_modules/jquery/dist/jquery.slim.min.js',
+      'node_modules/popper.js/dist/popper.min.js',
+      'node_modules/bootstrap/dist/js/bootstrap.min.js'
+    ])
     .pipe(gulp.dest(distDir + '/js'));
 
   return done();
