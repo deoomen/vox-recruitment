@@ -27,3 +27,30 @@ body {
         margin: 1rem 0;
     }
 }
+
+
+.comment {
+    &__body {
+
+    }
+
+    &__author {
+
+    }
+
+    &__date {
+
+    }
+
+    &__text {
+
+    }
+}
+
+.commentModal {
+    .has-error {
+        .help-text {
+            color: #dc3545 !important;
+        }
+    }
+}
