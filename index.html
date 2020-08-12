@@ -59,6 +59,44 @@
 
     <main>
 
+        <section class="comments">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>
+                            Komentarze
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#commentModal">
+                            Dodaj komentarz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row comments__container">
+                    <div class="comment col-12 my-2">
+                        <div class="card">
+                            <div class="card-body comment__body">
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <span class="comment__author">nick</span>,
+                                        <span class="comment__date">2020-08-06 02:07</span>
+                                    </small>
+                                </p>
+                                <p class="card-text comment__text">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -98,6 +136,53 @@
             </div>
         </div>
     </footer>
+
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="needs-validation" action="" method="POST" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="commentModalLabel">
+                            Dodaj komentarz
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col-12">
+                                <label for="nick">Nick</label>
+                                <input type="text" class="form-control counter-text" id="nick" name="nick" value="" maxlength="30" required>
+                                <div class="d-flex">
+                                    <small class="help-text form-text text-muted flex-grow-1">
+                                        help text
+                                    </small>
+                                    <small class="count-text form-text text-muted font-italic"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <label for="text">Komentarz</label>
+                                <textarea class="form-control counter-text" id="text" name="text" maxlength="500"></textarea>
+                                <div class="d-flex">
+                                    <small class="help-text form-text text-muted flex-grow-1">
+                                        help text
+                                    </small>
+                                    <small class="count-text form-text text-muted font-italic"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="submit" class="btn btn-primary">Wyślij</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="dist/js/jquery.slim.min.js"></script>
     <script src="dist/js/popper.min.js"></script>
