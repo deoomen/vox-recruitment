@@ -1,4 +1,5 @@
 const apiUrl = './api';
+let $commentTemplate = null;
 let ajaxed = false;
 let commentsPage = 0;
 
@@ -19,15 +20,14 @@ function loadComments() {
       ajaxed = true;
     },
     success: (comments) => {
-      const $commentTemplate = $('.comment').clone();
-      $('.comments__container').html('');
-      $commentTemplate.removeClass('template');
       comments.forEach(comment => {
         const $comment = $commentTemplate.clone();
+        $comment.hide();
         $comment.find('.comment__author').text(comment.author);
         $comment.find('.comment__date').text(comment.createdAt)  ;
         $comment.find('.comment__text').text(comment.text);
         $('.comments__container').append($comment);
+        $comment.fadeIn(300);
       });
 
       commentsPage++;
@@ -45,6 +45,9 @@ $(() => {
   $('body').removeClass('loading');
 
   // comments
+  $commentTemplate = $('.comment').clone();
+  $('.comments__container').html('');
+  $commentTemplate.removeClass('template');
   loadComments();
   $(window).scroll(() => {
     if ($(window).scrollTop() >= ($(document).height() - $(window).height() - $('footer').height())) {
