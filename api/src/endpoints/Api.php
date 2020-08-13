@@ -14,4 +14,6 @@ abstract class Api
     }
 
     public abstract function getItems(): array;
+
+    public abstract function getItemsAsArray(): array;
 }

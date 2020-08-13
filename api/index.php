@@ -15,7 +15,7 @@ $api = null;
 switch ($_SERVER["REQUEST_METHOD"] . $_GET["endpoint"]) {
     case "GETcomments":
         $api = new Comments();
-        $items = $api->getItems();
+        $items = $api->getItemsAsArray();
         \var_dump($items);
         $return = $items;
         break;
