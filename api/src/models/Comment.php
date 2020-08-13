@@ -9,12 +9,13 @@ class Comment
     private string $text;
     private \DateTimeImmutable $createdAt;
 
-    public function __construct(string $author, string $text, ?int $id = null, ?\DateTimeImmutable $createdAt = null)
+    // public function __construct(string $author, string $text, ?int $id = null, ?\DateTimeImmutable $createdAt = null)
+    public function __construct(\stdClass $object)
     {
-        $this->id = $id;
-        $this->author = $author;
-        $this->text = $text;
-        $this->createdAt = $createdAt ?? (new \DateTimeImmutable());
+        $this->id = $object->id;
+        $this->author = $object->author;
+        $this->text = $object->text;
+        $this->createdAt = new \DateTimeImmutable($object->createdAt ?? "now");
     }
 
     public function getId(): ?int
