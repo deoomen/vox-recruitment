@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ /vox-recruitment/api/index.php?endpoint=$1 [NC,L,QSA]
