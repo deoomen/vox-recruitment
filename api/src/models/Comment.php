@@ -15,7 +15,7 @@ class Comment
         $this->id = $object->id;
         $this->author = $object->author;
         $this->text = $object->text;
-        $this->createdAt = new \DateTimeImmutable($object->createdAt ?? "now");
+        $this->createdAt = new \DateTimeImmutable($object->created_at ?? "now");
     }
 
     public function getId(): ?int
