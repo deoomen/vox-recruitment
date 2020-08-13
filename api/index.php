@@ -4,7 +4,7 @@ require "vendor/autoload.php";
 
 use VOXApi\Endpoints\Comments;
 
-\var_dump($_SERVER, $_GET);
+// \var_dump($_SERVER, $_GET);
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
@@ -31,3 +31,8 @@ switch ($_GET["endpoint"]) {
 
 $items = $api->getItems();
 \var_dump($items);
+$return = $items;
+
+// header("Content-Type: application/json;charset=utf-8");
+echo \json_encode($return);
+exit;
