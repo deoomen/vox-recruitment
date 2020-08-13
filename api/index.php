@@ -15,8 +15,22 @@ $api = null;
 switch ($_SERVER["REQUEST_METHOD"] . $_GET["endpoint"]) {
     case "GETcomments":
         $api = new Comments();
+
+        $page = \filter_input(
+            \INPUT_GET,
+            "page",
+            \FILTER_VALIDATE_INT, [
+                "options" => [
+                    "default" => 0,
+                    "min_range" => 0
+                ]
+            ]
+        );
+
+        $api->setPage($page);
+
         $items = $api->getItemsAsArray();
-        \var_dump($items);
+        // \var_dump($items);
         $return = $items;
         break;
 
@@ -30,6 +44,6 @@ if (empty($return)) {
     exit;
 }
 
-// header("Content-Type: application/json;charset=utf-8");
+header("Content-Type: application/json;charset=utf-8");
 echo \json_encode($return);
 exit;
