@@ -1,16 +1,22 @@
 const apiUrl = './api';
+let ajaxed = false;
+let commentsPage = 0;
 
 function countText(elem) {
   $(elem).next().children('.count-text').text($(elem).val().length + '/' + $(elem).attr('maxlength'));
 }
 
-function loadComments(page) {
+function loadComments() {
+  if (ajaxed) {
+    return;
+  }
+
   $.ajax({
     method: 'GET',
-    url: apiUrl + '/comments',
+    url: apiUrl + '/comments?page=' + commentsPage,
     dataType: 'json',
     beforeSend: () => {
-
+      ajaxed = true;
     },
     success: (comments) => {
       const $commentTemplate = $('.comment').clone();
@@ -23,12 +29,14 @@ function loadComments(page) {
         $comment.find('.comment__text').text(comment.text);
         $('.comments__container').append($comment);
       });
+
+      commentsPage++;
     },
     error: () => {
 
     },
     complete: () => {
-
+      ajaxed = false;
     }
   });
 }
@@ -36,8 +44,15 @@ function loadComments(page) {
 $(() => {
   $('body').removeClass('loading');
 
-  loadComments(0);
+  // comments
+  loadComments();
+  $(window).scroll(() => {
+    if ($(window).scrollTop() >= ($(document).height() - $(window).height() - $('footer').height())) {
+      loadComments();
+    }
+  });
 
+  // comment modal
   $('.counter-text').each((k, elem) => {
     countText(elem);
   });
