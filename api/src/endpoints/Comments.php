@@ -7,16 +7,13 @@ use VOXApi\Models\Comment;
 
 class Comments extends Api
 {
-    private string $tableName = "comment";
-    private int $page;
-    private int $perPage;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->page = 0;
-        $this->perPage = 10;
+        $this->tableName = "comment";
+        $this->setPerPage(10);
     }
 
     /**
@@ -29,12 +26,12 @@ class Comments extends Api
         $query = "SELECT `c`.`id`, `c`.`author`, `c`.`text`, `c`.`created_at`
             FROM `{$this->tableName}` AS `c`
             ORDER BY `c`.`created_at` DESC, `c`.`id` DESC
-            LIMIT {$this->page}, {$this->perPage}
+            LIMIT {$this->getOffset()}, {$this->getPerPage()}
         ";
 
         $stmt = $this->database->connection()->prepare($query);
-        $stmt->bindParam(":page", $this->page);
-        $stmt->bindParam(":perPage", $this->perPage);
+        // $stmt->bindParam(":page", $this->page);
+        // $stmt->bindParam(":perPage", $this->perPage);
 
         $items = [];
         if ($stmt->execute()) {
