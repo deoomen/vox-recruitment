@@ -1,5 +1,9 @@
 <?php
 
+require "vendor/autoload.php";
+
+use VOXApi\Endpoints\Comments;
+
 \var_dump($_SERVER, $_GET);
 
 switch ($_SERVER["REQUEST_METHOD"]) {
@@ -14,8 +18,16 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         exit;
 }
 
+$api = null;
 switch ($_GET["endpoint"]) {
     case "comments":
-        include_once "endpoints/comments.php";
+        $api = new Comments();
         break;
+
+    default:
+        header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+        exit;
 }
+
+$items = $api->getItems();
+\var_dump($items);

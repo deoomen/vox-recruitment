@@ -1,0 +1,17 @@
+{
+    "name": "deoomen/vox-recruitment-api",
+    "description": "Recruitment task for the VOX company - the API part",
+    "type": "project",
+    "authors": [
+        {
+            "name": "deoomen",
+            "email": "deoomen@pm.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VOXApi\\": "src/"
+        }
+    },
+    "require": {}
+}
