@@ -4,6 +4,12 @@ namespace VOXApi\Endpoints;
 
 use VOXApi\Db\DatabaseMysql;
 
+/**
+ * Undocumented class
+ *
+ * @category Api
+ * @author deoomen <deoomen@pm.me>
+ */
 abstract class Api
 {
     private int $page;
@@ -12,6 +18,9 @@ abstract class Api
     protected DatabaseMysql $database;
     protected string $tableName;
 
+    /**
+     * Init properties
+     */
     public function __construct()
     {
         $this->database = new DatabaseMysql();
@@ -20,39 +29,83 @@ abstract class Api
         $this->calcOffset();
     }
 
-    public final function getPage(): int
+    /**
+     * Return current page
+     *
+     * @return int
+     */
+    final public function getPage(): int
     {
         return $this->page;
     }
 
-    public final function setPage(int $page): void
+    /**
+     * Set current page
+     *
+     * @param int $page current page
+     *
+     * @return void
+     */
+    final public function setPage(int $page): void
     {
         $this->page = $page;
         $this->calcOffset();
     }
 
-    public final function getPerPage()
+    /**
+     * Return how much rows per page
+     *
+     * @return void
+     */
+    final public function getPerPage()
     {
         return $this->perPage;
     }
 
-    public final function setPerPage(int $perPage): void
+    /**
+     * Set how much rows per page
+     *
+     * @param int $perPage rows per page
+     *
+     * @return void
+     */
+    final public function setPerPage(int $perPage): void
     {
         $this->perPage = $perPage;
         $this->calcOffset();
     }
 
-    private final function calcOffset(): void
+    /**
+     * Calculate current rows offset
+     *
+     * @return void
+     */
+    final private function calcOffset(): void
     {
         $this->offset = $this->page * $this->perPage;
     }
 
-    public final function getOffset(): int
+    /**
+     * Return current rows offset
+     *
+     * @return int
+     */
+    final public function getOffset(): int
     {
         return $this->offset;
     }
 
-    public abstract function getItems(): array;
+    /**
+     * Should return array of objects from database
+     *
+     * @return array
+     */
+    abstract public function getItems(): array;
 
-    public abstract function getItemsAsArray(): array;
+    /**
+     * Should return array of objects as array from database
+     *
+     * @return array
+     */
+    abstract public function getItemsAsArray(): array;
 }

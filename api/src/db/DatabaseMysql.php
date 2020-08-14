@@ -2,6 +2,12 @@
 
 namespace VOXApi\Db;
 
+/**
+ * MySQL database connection class
+ *
+ * @category Database
+ * @author deoomen <deoomen@pm.me>
+ */
 class DatabaseMysql
 {
     private string $host;
@@ -11,6 +17,9 @@ class DatabaseMysql
     private string $dbname;
     private ?\PDO $connection;
 
+    /**
+     * Loads database config
+     */
     public function __construct()
     {
         if (!($config = \parse_ini_file("config/config.ini", true))) {
@@ -27,11 +36,23 @@ class DatabaseMysql
         $this->connection = null;
     }
 
+    /**
+     * Write log to file
+     *
+     * @param string $message log text message
+     *
+     * @return void
+     */
     private function log(string $message): void
     {
         \error_log(\date("c") . " - " . $message . "\n", 3, "logs/" . \date("Ymd") . "_db_errors.log");
     }
 
+    /**
+     * Try to connect to database and return result
+     *
+     * @return \PDO|null
+     */
     public function connection(): ?\PDO
     {
         if ($this->connection === null) {
