@@ -2,6 +2,9 @@
 
 namespace VOXApi\Models;
 
+use VOXApi\Db\DatabaseMysql;
+use VOXApi\Helpers\Logger;
+
 /**
  * Undocumented class
  *
@@ -101,12 +104,47 @@ class Comment
     }
 
     /**
-     * Return comment creation time
+     * Return comment creation time in given format,
+     * if no format specified - returns `\DateTimeImmutable` object
      *
-     * @return \DateTimeImmutable
+     * @param string $format `\DateTimeImmutable` format
+     *
+     * @return \DateTimeImmutable|string
      */
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(string $format = "")
     {
-        return $this->createdAt;
+        return $format ? $this->createdAt->format($format) : $this->createdAt;
+    }
+
+    /**
+     * Save comment object to database
+     *
+     * @return int values <0 means error
+     */
+    public function save(): int
+    {
+        $connection = DatabaseMysql::connection();
+        try {
+            if ($this->id === 0) {  // add new
+                $query = "INSERT INTO `comment` VALUES (null, :author, :text, :createdAt)";
+                $stmt = $connection->prepare($query);
+                $stmt->bindParam(":author", $this->author);
+                $stmt->bindParam(":text", $this->text);
+                $stmt->bindParam(":createdAt", $this->getCreatedAt("Y-m-d H:i:s"));
+                if ($stmt->execute()) {
+                    $this->id = $connection->lastInsertId();
+                }
+            } elseif ($this->id > 0) {  // update
+            }
+        } catch (\Exception $ex) {
+            Logger::log(\implode(" - ", [
+                "Code: {$ex->getCode()}",
+                "Line: {$ex->getLine()}",
+                "Message: {$ex->getMessage()}"
+            ]), Logger::FILENAME_DATABASE);
+            return -1;
+        }
+
+        return $this->id;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace VOXApi\Db;
 
+use VOXApi\Helpers\Logger;
+
 /**
  * MySQL database connection class
  *
@@ -25,7 +27,7 @@ class DatabaseMysql
     {
         if (!($config = \parse_ini_file("config/config.ini", true))) {
             $message = "Unable to load config file.";
-            $this->log($message);
+            Logger::log($message, Logger::FILENAME_DATABASE);
             throw new \Exception($message);
         }
 
@@ -47,25 +49,13 @@ class DatabaseMysql
                     ]
                 );
             } catch (\Exception $ex) {
-                $this->log(\implode(" - ", [
+                Logger::log(\implode(" - ", [
                     "Code: {$ex->getCode()}",
                     "Line: {$ex->getLine()}",
                     "Message: {$ex->getMessage()}"
-                ]));
+                ]), Logger::FILENAME_DATABASE);
             }
         }
-    }
-
-    /**
-     * Write log to file
-     *
-     * @param string $message log text message
-     *
-     * @return void
-     */
-    private function log(string $message): void
-    {
-        \error_log(\date("c") . " - " . $message . "\n", 3, "logs/" . \date("Ymd") . "_db_errors.log");
     }
 
     /**

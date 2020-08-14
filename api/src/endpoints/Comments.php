@@ -61,7 +61,7 @@ class Comments extends Api
                 "id" => $comment->getId(),
                 "author" => $comment->getAuthor(),
                 "text" => $comment->getText(),
-                "createdAt" => $comment->getCreatedAt()->format("Y-m-d H:i")
+                "createdAt" => $comment->getCreatedAt("Y-m-d H:i")
             ];
         }
 
@@ -106,6 +106,7 @@ class Comments extends Api
                 "author" => $postData["nick"],
                 "text" => $postData["text"]
             ]);
+            $comment->save();
             \var_dump($comment);exit;
         }
 
