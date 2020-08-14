@@ -5,9 +5,17 @@ namespace VOXApi\Endpoints;
 use VOXApi\Endpoints\Api;
 use VOXApi\Models\Comment;
 
+/**
+ * Undocumented class
+ *
+ * @category Api
+ * @author deoomen <deoomen@pm.me>
+ */
 class Comments extends Api
 {
-
+    /**
+     * Init, set table name and default per page
+     */
     public function __construct()
     {
         parent::__construct();
@@ -17,21 +25,18 @@ class Comments extends Api
     }
 
     /**
-     * Undocumented function
+     * Return array of objects representing comments from database
      *
      * @return \VOXApi\Models\Comment[]
      */
     public function getItems(): array
     {
-        $query = "SELECT `c`.`id`, `c`.`author`, `c`.`text`, `c`.`created_at`
+        $stmt = $this->database->connection()->prepare(
+            "SELECT `c`.`id`, `c`.`author`, `c`.`text`, `c`.`created_at`
             FROM `{$this->tableName}` AS `c`
             ORDER BY `c`.`created_at` DESC, `c`.`id` DESC
-            LIMIT {$this->getOffset()}, {$this->getPerPage()}
-        ";
-
-        $stmt = $this->database->connection()->prepare($query);
-        // $stmt->bindParam(":page", $this->page);
-        // $stmt->bindParam(":perPage", $this->perPage);
+            LIMIT {$this->getOffset()}, {$this->getPerPage()}"
+        );
 
         $items = [];
         if ($stmt->execute()) {
@@ -43,6 +48,11 @@ class Comments extends Api
         return $items;
     }
 
+    /**
+     * Return array of objects as array representing comments from database
+     *
+     * @return array
+     */
     public function getItemsAsArray(): array
     {
         $commentsAsArray = [];
