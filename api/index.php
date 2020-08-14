@@ -12,14 +12,20 @@ if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
 }
 
 $api = null;
-switch ($_SERVER["REQUEST_METHOD"] . $_GET["endpoint"]) {
+$endpoint = \filter_input(
+    \INPUT_GET,
+    "endpoint",
+    \FILTER_SANITIZE_STRING
+);
+switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
     case "GETcomments":
         $api = new Comments();
 
         $page = \filter_input(
             \INPUT_GET,
             "page",
-            \FILTER_VALIDATE_INT, [
+            \FILTER_VALIDATE_INT,
+            [
                 "options" => [
                     "default" => 0,
                     "min_range" => 0
