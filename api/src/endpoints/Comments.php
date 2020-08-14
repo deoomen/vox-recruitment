@@ -67,4 +67,48 @@ class Comments extends Api
 
         return $commentsAsArray;
     }
+
+    public function validateNewComment(array $postData): array
+    {
+        $return = [
+            "status" => true,
+            "messages" => []
+        ];
+
+        $postData["nick"] = $this->sanitizeVar($postData["nick"]);
+        $postData["text"] = $this->sanitizeVar($postData["text"]);
+
+        $nickLength = \strlen($postData["nick"]);
+        $textLength = \strlen($postData["text"]);
+
+        if (\strlen($postData["hp"]) > 0) {
+            $return["status"] = false;
+        }
+
+        if ($nickLength === 0 || $nickLength > 30) {
+            $return["status"] = false;
+            $return["messages"][] = [
+                "field" => "nick",
+                "message" => "Długość nicku musi być między 1 a 30 znaków"
+            ];
+        }
+
+        if ($textLength === 0 || $textLength > 500) {
+            $return["status"] = false;
+            $return["messages"][] = [
+                "field" => "text",
+                "message" => "Długość tekstu musi być między 1 a 500 znaków"
+            ];
+        }
+
+        if ($return["status"] === true) {
+            $comment = new Comment((object) [
+                "author" => $postData["nick"],
+                "text" => $postData["text"]
+            ]);
+            \var_dump($comment);exit;
+        }
+
+        return $return;
+    }
 }

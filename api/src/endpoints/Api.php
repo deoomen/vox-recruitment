@@ -108,4 +108,13 @@ abstract class Api
      * @return array
      */
     abstract public function getItemsAsArray(): array;
+
+    protected function sanitizeVar(string $var): string
+    {
+        return \trim(
+            \strip_tags(
+                $var
+            )
+        );
+    }
 }

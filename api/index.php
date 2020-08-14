@@ -5,6 +5,7 @@ require "vendor/autoload.php";
 use VOXApi\Endpoints\Comments;
 
 // \var_dump($_SERVER, $_GET);
+\sleep(2);
 
 if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
     \header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
@@ -19,8 +20,7 @@ $endpoint = \filter_input(
 );
 switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
     case "GETcomments":
-        $api = new Comments();
-
+        $comments = new Comments();
         $page = \filter_input(
             \INPUT_GET,
             "page",
@@ -33,11 +33,21 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
             ]
         );
 
-        $api->setPage($page);
+        $comments->setPage($page);
+        $return = $comments->getItemsAsArray();
+        break;
 
-        $items = $api->getItemsAsArray();
-        // \var_dump($items);
-        $return = $items;
+    case "POSTcomments":
+        $comments = new Comments();
+        $return = $comments->validateNewComment([
+            "hp" => \filter_input(\INPUT_POST, "hp", \FILTER_SANITIZE_STRING),
+            "nick" => \filter_input(\INPUT_POST, "nick", \FILTER_SANITIZE_STRING),
+            "text" => \filter_input(\INPUT_POST, "text", \FILTER_SANITIZE_STRING)
+        ]);
+
+        if ($return["status"] === true) {
+            \var_dump($return);exit;
+        }
         break;
 
     default:
