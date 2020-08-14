@@ -109,6 +109,13 @@ abstract class Api
      */
     abstract public function getItemsAsArray(): array;
 
+    /**
+     * Sanitie string variable
+     *
+     * @param string $var variable to sanitize
+     *
+     * @return string
+     */
     protected function sanitizeVar(string $var): string
     {
         return \trim(
