@@ -10,7 +10,7 @@ namespace VOXApi\Models;
  */
 class Comment
 {
-    private ?int $id;
+    private int $id;
     private string $author;
     private string $text;
     private \DateTimeImmutable $createdAt;
@@ -22,7 +22,7 @@ class Comment
      */
     public function __construct(\stdClass $object)
     {
-        $this->id = $object->id;
+        $this->id = $object->id ?? 0;
         $this->author = $object->author;
         $this->text = $object->text;
         $this->createdAt = new \DateTimeImmutable($object->created_at ?? "now");
@@ -31,9 +31,9 @@ class Comment
     /**
      * Return comment id
      *
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
