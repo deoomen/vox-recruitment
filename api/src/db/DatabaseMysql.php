@@ -15,7 +15,8 @@ class DatabaseMysql
     private string $username;
     private string $password;
     private string $dbname;
-    private ?\PDO $connection;
+    private static ?self $instance = null;
+    private ?\PDO $connection = null;
 
     /**
      * Loads database config
@@ -33,28 +34,7 @@ class DatabaseMysql
         $this->username = $config["database"]["username"];
         $this->password = $config["database"]["password"];
         $this->dbname = $config["database"]["dbname"];
-        $this->connection = null;
-    }
 
-    /**
-     * Write log to file
-     *
-     * @param string $message log text message
-     *
-     * @return void
-     */
-    private function log(string $message): void
-    {
-        \error_log(\date("c") . " - " . $message . "\n", 3, "logs/" . \date("Ymd") . "_db_errors.log");
-    }
-
-    /**
-     * Try to connect to database and return result
-     *
-     * @return \PDO|null
-     */
-    public function connection(): ?\PDO
-    {
         if ($this->connection === null) {
             try {
                 $this->connection = new \PDO(
@@ -74,7 +54,31 @@ class DatabaseMysql
                 ]));
             }
         }
+    }
 
-        return $this->connection;
+    /**
+     * Write log to file
+     *
+     * @param string $message log text message
+     *
+     * @return void
+     */
+    private function log(string $message): void
+    {
+        \error_log(\date("c") . " - " . $message . "\n", 3, "logs/" . \date("Ymd") . "_db_errors.log");
+    }
+
+    /**
+     * Try to connect to database and return result
+     *
+     * @return \PDO
+     */
+    public static function connection(): \PDO
+    {
+        if (self::$instance === null) {
+            self::$instance = new DatabaseMysql();
+        }
+
+        return self::$instance->connection;
     }
 }

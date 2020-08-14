@@ -31,7 +31,7 @@ class Comments extends Api
      */
     public function getItems(): array
     {
-        $stmt = $this->database->connection()->prepare(
+        $stmt = $this->database->prepare(
             "SELECT `c`.`id`, `c`.`author`, `c`.`text`, `c`.`created_at`
             FROM `{$this->tableName}` AS `c`
             ORDER BY `c`.`created_at` DESC, `c`.`id` DESC

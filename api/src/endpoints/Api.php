@@ -15,7 +15,7 @@ abstract class Api
     private int $page;
     private int $perPage;
     private int $offset;
-    protected DatabaseMysql $database;
+    protected \PDO $database;
     protected string $tableName;
 
     /**
@@ -23,7 +23,7 @@ abstract class Api
      */
     public function __construct()
     {
-        $this->database = new DatabaseMysql();
+        $this->database = DatabaseMysql::connection();
         $this->page = 0;
         $this->perPage = 1;
         $this->calcOffset();
