@@ -53,6 +53,11 @@ body {
             color: #dc3545 !important;
         }
     }
+
+    &__loader {
+        opacity: 0;
+        transition: opacity ease-in-out .3s;
+    }
 }
 
 .template {
