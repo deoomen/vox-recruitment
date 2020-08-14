@@ -3,3 +3,4 @@
 /api/config/config.ini
 *.log
 vendor/
+/.vscode
