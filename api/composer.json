@@ -13,5 +13,7 @@
             "VOXApi\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "deoomen/please-dont-swear": "^1.1"
+    }
 }

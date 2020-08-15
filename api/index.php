@@ -7,6 +7,7 @@ if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
 
 require "vendor/autoload.php";
 
+use PleaseDontSwear\PleaseDontSwear;
 use VOXApi\Endpoints\Comments;
 use VOXApi\Endpoints\Slides;
 use VOXApi\Models\Comment;
@@ -47,9 +48,10 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
         ]);
 
         if ($return["status"] === true) {
+            $pds = new PleaseDontSwear();
             $comment = new Comment((object) [
-                "author" => $nick,
-                "text" => $text
+                "author" => $pds->censor($nick),
+                "text" => $pds->censor($text)
             ]);
             if ($comment->save() > 0) {
                 $return["voucher"] = $comments->getVoucher();

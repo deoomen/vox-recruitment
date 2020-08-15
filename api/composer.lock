@@ -1,0 +1,67 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3de9873437ff868726c45a5f34430025",
+    "packages": [
+        {
+            "name": "deoomen/please-dont-swear",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deoomen/please-dont-swear.git",
+                "reference": "7df417f78285fd29e8a214e9df2c84f2f9725ac6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deoomen/please-dont-swear/zipball/7df417f78285fd29e8a214e9df2c84f2f9725ac6",
+                "reference": "7df417f78285fd29e8a214e9df2c84f2f9725ac6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PleaseDontSwear\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "deoomen",
+                    "email": "deoomen@pm.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "A simple package that allows you to easily censor text",
+            "homepage": "https://github.com/deoomen/please-dont-swear",
+            "keywords": [
+                "bad word",
+                "censor",
+                "censorship",
+                "curse",
+                "swear"
+            ],
+            "time": "2020-07-13T18:17:05+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
