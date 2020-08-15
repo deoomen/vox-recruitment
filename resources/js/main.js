@@ -64,9 +64,13 @@ $(() => {
   $('.carousel-inner').html('');
   $slideTemplate.removeClass('template');
 
-  $indicatorTemplate = $('.carousel-indicators > .template').clone();
-  $('.carousel-indicators').html('');
+  $indicatorTemplate = $('.slider__thumbs > .template').clone();
+  $('.slider__thumbs').html('');
   $indicatorTemplate.removeClass('template');
+
+  $('#sliderCarousel').on('slide.bs.carousel', (e) => {
+    $('.slider__thumbs > li').removeClass('active').eq(e.to).addClass('active');
+  });
 
   $.ajax({
     method: 'GET',
@@ -77,16 +81,26 @@ $(() => {
     },
     success: (slides) => {
       let index = 0;
-      slides.forEach(slide => {
-        const $slide = $slideTemplate.clone();
+      for (let i = 0; i < 5; i++) {
+        slides.forEach(slide => {
+          let photoIndex = 1;
+          const $slide = $slideTemplate.clone();
+          $slide.find('.slide__title').text(slide.title);
+          $slide.find('.slide__text').text(slide.text);
+          slide.photos.forEach(photo => {
+            $slide.find('.slide__photo--' + (photoIndex++) + ' img').attr('src', photo.filename);
+          });
+          $('.carousel-inner').append($slide);
 
-        $('.carousel-inner').append($slide);
+          const $indicator = $indicatorTemplate.clone();
+          $indicator.attr('data-slide-to', index++);
+          $indicator.children('img').attr('src', slide.photos[0].filename);
+          $('.slider__thumbs').append($indicator);
+        });
+      }
 
-        const $indicator = $indicatorTemplate.clone();
-        $indicator.attr('data-slide-to', index++);
-        $indicator.children('img').attr('src', slide.photos[0].filename);
-        $('.carousel-indicators').append($indicator);
-      });
+      $('.carousel-item:first-child').addClass('active');
+      $('.slider__thumbs > li:first-child').addClass('active');
     },
     error: () => {
 

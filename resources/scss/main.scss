@@ -28,22 +28,71 @@ body {
     }
 }
 
-
-.comment {
-    &__body {
-
+.slider {
+    .carousel {
+        width: 100%;
+        margin: 0 10%;
     }
 
-    &__author {
+    &__thumbs {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
 
+        li {
+            cursor: pointer;
+            margin: 0 .5rem;
+            transition: ease-in-out .3s;
+
+            &.active {
+                transform: scale(1.1);
+            }
+
+            img {
+                height: 80px;
+            }
+        }
+    }
+}
+
+.slide {
+    &__container {
+        &--1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            grid-template-areas:
+                "photo1 photo1 photo4 photo5 photo8 photo8"
+                "photo1 photo1 photo4 photo6 photo8 photo8"
+                "photo2 photo3 text photo7 photo8 photo8"
+                "photo2 photo3 text photo7 photo8 photo8";
+        }
     }
 
-    &__date {
-
+    &__textbox {
+        grid-area: text;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    &__text {
+    &__title {
+        text-transform: uppercase;
+    }
 
+    &__photo {
+        img {
+            width: 100%;
+            // height: 100%;
+        }
+
+        @for $i from 1 through 8 {
+            &--#{$i} {
+                grid-area: photo#{$i};
+            }
+        }
     }
 }
 
