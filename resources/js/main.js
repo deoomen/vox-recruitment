@@ -74,6 +74,24 @@ $(() => {
     $('.slider__thumbs > div').removeClass('active').eq(e.to).addClass('active');
   });
 
+  $('body').on('click', '.slide__photo-expand', e => {
+    const $slide = $(e.target).parent();
+    if ($(e.target).hasClass('slide__photo-expand--plus')) {
+      $slide.css('height', $slide.height() * 2 + 20);
+      if ($slide.hasClass('slide__photo--1')) {
+        $slide.css('width', $slide.width());
+      } else {
+        $slide.css('width', $slide.width() * 2 + 20);
+      }
+    } else {  // minus
+      $slide.css('height', 'auto');
+      $slide.css('width', 'auto');
+    }
+
+    $slide.toggleClass('zoomed');
+    $(e.target).toggleClass('slide__photo-expand--plus slide__photo-expand--minus');
+  });
+
   $.ajax({
     method: 'GET',
     url: apiUrl + '/slides',
