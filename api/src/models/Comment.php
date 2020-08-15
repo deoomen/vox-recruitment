@@ -11,9 +11,8 @@ use VOXApi\Helpers\Logger;
  * @category Api
  * @author deoomen <deoomen@pm.me>
  */
-class Comment
+class Comment extends Model
 {
-    private int $id;
     private string $author;
     private string $text;
     private \DateTimeImmutable $createdAt;
@@ -29,30 +28,6 @@ class Comment
         $this->author = $object->author;
         $this->text = $object->text;
         $this->createdAt = new \DateTimeImmutable($object->created_at ?? "now");
-    }
-
-    /**
-     * Return comment id
-     *
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set comment id
-     *
-     * @param int $value comment id
-     *
-     * @return self
-     */
-    public function setId(int $value): self
-    {
-        $this->id = $value;
-
-        return $this;
     }
 
     /**
