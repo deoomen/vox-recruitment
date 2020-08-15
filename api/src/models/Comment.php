@@ -8,7 +8,7 @@ use VOXApi\Helpers\Logger;
 /**
  * Undocumented class
  *
- * @category Api
+ * @category Model
  * @author deoomen <deoomen@pm.me>
  */
 class Comment extends Model
