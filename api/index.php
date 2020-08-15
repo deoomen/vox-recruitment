@@ -3,6 +3,7 @@
 require "vendor/autoload.php";
 
 use VOXApi\Endpoints\Comments;
+use VOXApi\Endpoints\Slides;
 use VOXApi\Models\Comment;
 
 // \var_dump($_SERVER, $_GET);
@@ -58,6 +59,12 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
                 $return["comment"] = $comment->toArray();
             }
         }
+        break;
+
+    case "GETslides":
+        $slides = new Slides();
+        $return = $slides->getItemsAsArray();
+        \var_dump($return);exit;
         break;
 
     default:
