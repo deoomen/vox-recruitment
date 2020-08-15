@@ -1,4 +1,6 @@
 const apiUrl = './api';
+let $slideTemplate = null;
+let $indicatorTemplate = null;
 let $commentTemplate = null;
 let ajaxed = false;
 let commentsPage = 0;
@@ -55,6 +57,43 @@ $(() => {
 
   $('.copyToClipboard').click((e) => {
     copyToClipboard(e.target.attributes['data-copy'].value);
+  });
+
+  // slider
+  $slideTemplate = $('.carousel-item.template').clone();
+  $('.carousel-inner').html('');
+  $slideTemplate.removeClass('template');
+
+  $indicatorTemplate = $('.carousel-indicators > .template').clone();
+  $('.carousel-indicators').html('');
+  $indicatorTemplate.removeClass('template');
+
+  $.ajax({
+    method: 'GET',
+    url: apiUrl + '/slides',
+    dataType: 'json',
+    beforeSend: () => {
+
+    },
+    success: (slides) => {
+      let index = 0;
+      slides.forEach(slide => {
+        const $slide = $slideTemplate.clone();
+
+        $('.carousel-inner').append($slide);
+
+        const $indicator = $indicatorTemplate.clone();
+        $indicator.attr('data-slide-to', index++);
+        $indicator.children('img').attr('src', slide.photos[0].filename);
+        $('.carousel-indicators').append($indicator);
+      });
+    },
+    error: () => {
+
+    },
+    complete: () => {
+
+    }
   });
 
   // comments
