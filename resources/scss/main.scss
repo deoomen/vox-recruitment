@@ -2,6 +2,7 @@
 
 body {
     font-size: $font-size;
+    padding-top: $header-height;
 
     &.loading {
         header,
@@ -21,11 +22,17 @@ body {
 }
 
 .header {
-    &__slogan {
-        text-align: center;
-        font-size: 4rem;
-        margin: 1rem 0;
-    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.slogan {
+    text-align: center;
+    font-size: 4rem;
+    margin: 1rem 0;
 }
 
 .slider {
