@@ -69,7 +69,7 @@ $(() => {
   $indicatorTemplate.removeClass('template');
 
   $('#sliderCarousel').on('slide.bs.carousel', (e) => {
-    $('.slider__thumbs > li').removeClass('active').eq(e.to).addClass('active');
+    $('.slider__thumbs > div').removeClass('active').eq(e.to).addClass('active');
   });
 
   $.ajax({
@@ -98,7 +98,7 @@ $(() => {
       });
 
       $('.carousel-item:first-child').addClass('active');
-      $('.slider__thumbs > li:first-child').addClass('active');
+      $('.slider__thumbs > div:first-child').addClass('active');
     },
     error: () => {
 

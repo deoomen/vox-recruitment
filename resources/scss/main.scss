@@ -36,21 +36,21 @@ body {
 }
 
 .slider {
-    .carousel {
+    .carousel,
+    &__thumbs {
         width: 100%;
         margin: 0 10%;
     }
 
     &__thumbs {
-        list-style: none;
-        margin: 0;
         padding: 1.5rem 0;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
 
-        li {
+        > div {
             cursor: pointer;
-            margin: 0 .5rem;
+            margin: .5rem;
             transition: ease-in-out .3s;
 
             &.active {
