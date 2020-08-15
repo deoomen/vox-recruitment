@@ -3,6 +3,7 @@
 namespace VOXApi\Endpoints;
 
 use VOXApi\Endpoints\Api;
+use VOXApi\Helpers\Logger;
 use VOXApi\Models\Comment;
 
 /**
@@ -57,26 +58,25 @@ class Comments extends Api
     {
         $commentsAsArray = [];
         foreach ($this->getItems() as $comment) {
-            $commentsAsArray[] = [
-                "id" => $comment->getId(),
-                "author" => $comment->getAuthor(),
-                "text" => $comment->getText(),
-                "createdAt" => $comment->getCreatedAt("Y-m-d H:i")
-            ];
+            $commentsAsArray[] = $comment->toArray();
         }
 
         return $commentsAsArray;
     }
 
+    /**
+     * Validate comment form fields
+     *
+     * @param array $postData form fields
+     *
+     * @return array
+     */
     public function validateNewComment(array $postData): array
     {
         $return = [
             "status" => true,
             "messages" => []
         ];
-
-        $postData["nick"] = $this->sanitizeVar($postData["nick"]);
-        $postData["text"] = $this->sanitizeVar($postData["text"]);
 
         $nickLength = \strlen($postData["nick"]);
         $textLength = \strlen($postData["text"]);
@@ -101,13 +101,48 @@ class Comments extends Api
             ];
         }
 
-        if ($return["status"] === true) {
-            $comment = new Comment((object) [
-                "author" => $postData["nick"],
-                "text" => $postData["text"]
+        // if ($return["status"] === true) {
+            // $return = new Comment((object) [
+            //     "author" => $postData["nick"],
+            //     "text" => $postData["text"]
+            // ]);
+        // }
+
+        return $return;
+    }
+
+    /**
+     * Returns voucher code
+     *
+     * @return string
+     */
+    public function getVoucher(): string
+    {
+        $return = "";
+
+        try {
+            $curl = \curl_init();
+            \curl_setopt_array($curl, [
+                \CURLOPT_URL => "http://www.meble.vox.pl/rekrutacja/voucher-098cdcff8f1341f213ed69c2228862a0",
+                \CURLOPT_HTTPHEADER => [
+                    "X-ApiKey: 098cdcff8f1341f213ed69c2228862a0"
+                ],
+                \CURLOPT_RETURNTRANSFER => true
             ]);
-            $comment->save();
-            \var_dump($comment);exit;
+            $response = \curl_exec($curl);
+            $httpcode = \curl_getinfo($curl, \CURLINFO_HTTP_CODE);
+            \curl_close($curl);
+
+            if ($httpcode === 200) {
+                $json = \json_decode($response);
+                $return = $json->voucher;
+            }
+        } catch (\Exception $ex) {
+            Logger::log(\implode(" - ", [
+                "Code: {$ex->getCode()}",
+                "Line: {$ex->getLine()}",
+                "Message: {$ex->getMessage()}"
+            ]), Logger::FILENAME_ERRORS);
         }
 
         return $return;

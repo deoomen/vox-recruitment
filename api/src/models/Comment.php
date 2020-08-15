@@ -117,6 +117,21 @@ class Comment
     }
 
     /**
+     * Return comment as array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            "id" => $this->id,
+            "author" => $this->author,
+            "text" => $this->text,
+            "createdAt" => $this->getCreatedAt("Y-m-d H:i")
+        ];
+    }
+
+    /**
      * Save comment object to database
      *
      * @return int values <0 means error
@@ -130,7 +145,8 @@ class Comment
                 $stmt = $connection->prepare($query);
                 $stmt->bindParam(":author", $this->author);
                 $stmt->bindParam(":text", $this->text);
-                $stmt->bindParam(":createdAt", $this->getCreatedAt("Y-m-d H:i:s"));
+                $createdAt = $this->getCreatedAt("Y-m-d H:i:s");
+                $stmt->bindParam(":createdAt", $createdAt);
                 if ($stmt->execute()) {
                     $this->id = $connection->lastInsertId();
                 }

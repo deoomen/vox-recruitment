@@ -3,6 +3,7 @@
 require "vendor/autoload.php";
 
 use VOXApi\Endpoints\Comments;
+use VOXApi\Models\Comment;
 
 // \var_dump($_SERVER, $_GET);
 \sleep(2);
@@ -39,14 +40,23 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
 
     case "POSTcomments":
         $comments = new Comments();
+        $nick = $comments->sanitizeVar(\filter_input(\INPUT_POST, "nick", \FILTER_SANITIZE_STRING));
+        $text = $comments->sanitizeVar(\filter_input(\INPUT_POST, "text", \FILTER_SANITIZE_STRING));
         $return = $comments->validateNewComment([
             "hp" => \filter_input(\INPUT_POST, "hp", \FILTER_SANITIZE_STRING),
-            "nick" => \filter_input(\INPUT_POST, "nick", \FILTER_SANITIZE_STRING),
-            "text" => \filter_input(\INPUT_POST, "text", \FILTER_SANITIZE_STRING)
+            "nick" => $nick,
+            "text" => $text
         ]);
 
         if ($return["status"] === true) {
-            \var_dump($return);exit;
+            $comment = new Comment((object) [
+                "author" => $nick,
+                "text" => $text
+            ]);
+            if ($comment->save() > 0) {
+                $return["voucher"] = $comments->getVoucher();
+                $return["comment"] = $comment->toArray();
+            }
         }
         break;
 

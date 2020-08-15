@@ -116,7 +116,7 @@ abstract class Api
      *
      * @return string
      */
-    protected function sanitizeVar(string $var): string
+    public function sanitizeVar(string $var): string
     {
         return \trim(
             \strip_tags(

@@ -150,23 +150,36 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-row">
-                            <div class="col-12">
-                                <label for="nick">Nick</label>
-                                <input type="text" class="form-control counter-text required" id="nick" name="nick" value="" maxlength="30">
-                                <div class="d-flex">
-                                    <small class="help-text form-text text-muted flex-grow-1"></small>
-                                    <small class="count-text form-text text-muted font-italic"></small>
+                        <div class="form-body">
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <label for="nick">Nick</label>
+                                    <input type="text" class="form-control counter-text required" id="nick" name="nick" value="" maxlength="30">
+                                    <div class="d-flex">
+                                        <small class="help-text form-text text-muted flex-grow-1"></small>
+                                        <small class="count-text form-text text-muted font-italic"></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <label for="text">Komentarz</label>
+                                    <textarea class="form-control counter-text required" id="text" name="text" maxlength="500"></textarea>
+                                    <div class="d-flex">
+                                        <small class="help-text form-text text-muted flex-grow-1"></small>
+                                        <small class="count-text form-text text-muted font-italic"></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-12">
-                                <label for="text">Komentarz</label>
-                                <textarea class="form-control counter-text required" id="text" name="text" maxlength="500"></textarea>
-                                <div class="d-flex">
-                                    <small class="help-text form-text text-muted flex-grow-1"></small>
-                                    <small class="count-text form-text text-muted font-italic"></small>
+                        <div class="voucher-body">
+                            <p>Dziękujemy za dodanie komentarza. Twój kod rabatowy to:</p>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="voucher" value="" disabled>
+                                <div class="input-group-append">
+                                    <button class="copyToClipboard btn btn-outline-secondary" type="button" data-copy="#voucher">
+                                        Skopiuj do schowka
+                                    </button>
                                 </div>
                             </div>
                         </div>

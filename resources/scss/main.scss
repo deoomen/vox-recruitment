@@ -58,6 +58,10 @@ body {
         opacity: 0;
         transition: opacity ease-in-out .3s;
     }
+
+    .voucher-body {
+        display: none;
+    }
 }
 
 .template {

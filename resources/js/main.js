@@ -7,6 +7,16 @@ function countText(elem, value) {
   $(elem).next().children('.count-text').text(value + '/' + $(elem).attr('maxlength'));
 }
 
+function pushComment(commentData, pushMethod) {
+  const $comment = $commentTemplate.clone();
+  $comment.hide();
+  $comment.find('.comment__author').text(commentData.author);
+  $comment.find('.comment__date').text(commentData.createdAt)  ;
+  $comment.find('.comment__text').text(commentData.text);
+  $('.comments__container')[pushMethod]($comment);
+  $comment.fadeIn(300);
+}
+
 function loadComments() {
   if (ajaxed) {
     return;
@@ -21,13 +31,7 @@ function loadComments() {
     },
     success: (comments) => {
       comments.forEach(comment => {
-        const $comment = $commentTemplate.clone();
-        $comment.hide();
-        $comment.find('.comment__author').text(comment.author);
-        $comment.find('.comment__date').text(comment.createdAt)  ;
-        $comment.find('.comment__text').text(comment.text);
-        $('.comments__container').append($comment);
-        $comment.fadeIn(300);
+        pushComment(comment, 'append');
       });
 
       commentsPage++;
@@ -41,8 +45,17 @@ function loadComments() {
   });
 }
 
+function copyToClipboard(elem) {
+  $(elem).focus().select();
+  document.execCommand('copy');
+}
+
 $(() => {
   $('body').removeClass('loading');
+
+  $('.copyToClipboard').click((e) => {
+    copyToClipboard(e.target.attributes['data-copy'].value);
+  });
 
   // comments
   $commentTemplate = $('.comment').clone();
@@ -119,8 +132,14 @@ $(() => {
       },
       success: (data) => {
         if (data.status) {
+          $('.form-body').hide();
+          $('[type="submit"]').hide();
+          $('.voucher-body').fadeIn(300);
+          $('#voucher').val(data.voucher);
 
-          $('#commentForm').trigger('reset');
+          $('.commentModal__status').text('');
+
+          pushComment(data.comment, 'prepend');
         } else {
           data.messages.forEach(msg => {
             $(`[name="${msg.field}"]`).addClass('is-invalid').parents('.form-row').addClass('has-error');
@@ -145,5 +164,8 @@ $(() => {
     $('.commentModal__status').text('');
     $('#commentForm').trigger('reset');
     $('#commentForm .form-control').trigger('input');
+    $('.form-body').show();
+    $('[type="submit"]').show();
+    $('.voucher-body').hide();
   });
 });

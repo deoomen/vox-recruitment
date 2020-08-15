@@ -5,6 +5,7 @@ namespace VOXApi\Helpers;
 class Logger
 {
     public const FILENAME_DATABASE = "db_errors";
+    public const FILENAME_ERRORS = "errors";
 
     /**
      * Write log to file
