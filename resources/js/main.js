@@ -78,9 +78,6 @@ $(() => {
     method: 'GET',
     url: apiUrl + '/slides',
     dataType: 'json',
-    beforeSend: () => {
-
-    },
     success: (slides) => {
       let index = 0;
       slides.forEach(slide => {
@@ -104,12 +101,6 @@ $(() => {
 
       $('#sliderLoader').hide();
       $('#sliderContainer').fadeIn(300);
-    },
-    error: () => {
-
-    },
-    complete: () => {
-
     }
   });
 
