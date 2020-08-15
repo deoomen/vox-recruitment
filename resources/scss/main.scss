@@ -66,16 +66,57 @@ body {
 
 .slide {
     &__container {
-        &--1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr;
-            gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    &:nth-child(12n+1),
+    &:nth-child(12n+2),
+    &:nth-child(12n+3) {
+        > .slide__container {
             grid-template-areas:
                 "photo1 photo1 photo4 photo5 photo8 photo8"
                 "photo1 photo1 photo4 photo6 photo8 photo8"
                 "photo2 photo3 text photo7 photo8 photo8"
                 "photo2 photo3 text photo7 photo8 photo8";
+        }
+    }
+
+    &:nth-child(12n+4),
+    &:nth-child(12n+5),
+    &:nth-child(12n+6) {
+        > .slide__container {
+            grid-template-areas:
+                "photo1 photo1 text photo5 photo8 photo8"
+                "photo1 photo1 text photo5 photo8 photo8"
+                "photo2 photo3 photo4 photo6 photo8 photo8"
+                "photo2 photo3 photo4 photo7 photo8 photo8";
+        }
+    }
+
+    &:nth-child(12n+7),
+    &:nth-child(12n+8),
+    &:nth-child(12n+9) {
+        > .slide__container {
+            grid-template-areas:
+                "photo1 photo1 photo4 text photo8 photo8"
+                "photo1 photo1 photo4 text photo8 photo8"
+                "photo2 photo3 photo5 photo7 photo8 photo8"
+                "photo2 photo3 photo6 photo7 photo8 photo8";
+        }
+    }
+
+    &:nth-child(12n),
+    &:nth-child(12n-1),
+    &:nth-child(12n-2) {
+        > .slide__container {
+            grid-template-areas:
+                "photo1 photo1 photo4 photo7 photo8 photo8"
+                "photo1 photo1 photo5 photo7 photo8 photo8"
+                "photo2 photo3 photo6 text photo8 photo8"
+                "photo2 photo3 photo6 text photo8 photo8";
         }
     }
 
