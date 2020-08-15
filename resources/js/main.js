@@ -81,23 +81,21 @@ $(() => {
     },
     success: (slides) => {
       let index = 0;
-      for (let i = 0; i < 5; i++) {
-        slides.forEach(slide => {
-          let photoIndex = 1;
-          const $slide = $slideTemplate.clone();
-          $slide.find('.slide__title').text(slide.title);
-          $slide.find('.slide__text').text(slide.text);
-          slide.photos.forEach(photo => {
-            $slide.find('.slide__photo--' + (photoIndex++) + ' img').attr('src', photo.filename);
-          });
-          $('.carousel-inner').append($slide);
-
-          const $indicator = $indicatorTemplate.clone();
-          $indicator.attr('data-slide-to', index++);
-          $indicator.children('img').attr('src', slide.photos[0].filename);
-          $('.slider__thumbs').append($indicator);
+      slides.forEach(slide => {
+        let photoIndex = 1;
+        const $slide = $slideTemplate.clone();
+        $slide.find('.slide__title').text(slide.title);
+        $slide.find('.slide__text').text(slide.text);
+        slide.photos.forEach(photo => {
+          $slide.find('.slide__photo--' + (photoIndex++) + ' img').attr('src', photo.filename);
         });
-      }
+        $('.carousel-inner').append($slide);
+
+        const $indicator = $indicatorTemplate.clone();
+        $indicator.attr('data-slide-to', index++);
+        $indicator.children('img').attr('src', slide.photos[0].filename);
+        $('.slider__thumbs').append($indicator);
+      });
 
       $('.carousel-item:first-child').addClass('active');
       $('.slider__thumbs > li:first-child').addClass('active');
