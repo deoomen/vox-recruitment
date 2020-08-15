@@ -6,9 +6,6 @@ use VOXApi\Endpoints\Comments;
 use VOXApi\Endpoints\Slides;
 use VOXApi\Models\Comment;
 
-// \var_dump($_SERVER, $_GET);
-\sleep(2);
-
 if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
     \header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
     exit;
@@ -64,7 +61,6 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
     case "GETslides":
         $slides = new Slides();
         $return = $slides->getItemsAsArray();
-        \var_dump($return);exit;
         break;
 
     default:
