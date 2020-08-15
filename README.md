@@ -13,7 +13,7 @@ Recruitment task for the VOX company.
 Download or `git clone`.
 
 ```bash
-cd <path_to_root_directory>/vox-recruitment
+cd /path/to/www/vox-recruitment
 npm install
 gulp
 cd api
