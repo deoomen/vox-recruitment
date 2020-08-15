@@ -56,6 +56,8 @@ switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
             if ($comment->save() > 0) {
                 $return["voucher"] = $comments->getVoucher();
                 $return["comment"] = $comment->toArray();
+
+                \header($_SERVER["SERVER_PROTOCOL"] . " 201 Created", true, 201);
             }
         }
         break;
