@@ -6,7 +6,7 @@
 
     <base href="/vox-recruitment/">
 
-    <title>Hello, world!</title>
+    <title>Hello, VOX!</title>
 
     <script>
         document.getElementsByTagName('html')[0].classList.remove('no-js');
@@ -55,11 +55,16 @@
 
     <main>
         <h1 class="slogan">
-            Hello, world!
+            Hello, VOX!
         </h1>
 
         <section id="slider" class="slider">
-            <div class="container-fluid">
+            <div id="sliderLoader" class="text-center">
+                <div class="spinner-grow text-danger" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div id="sliderContainer" class="container-fluid">
                 <div class="row">
                     <div id="sliderCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
                         <div class="carousel-inner">
@@ -140,6 +145,12 @@
                                 <p class="card-text comment__text"></p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div id="commentsLoader" class="text-center">
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
                     </div>
                 </div>
             </div>

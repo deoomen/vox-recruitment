@@ -20,7 +20,7 @@ function pushComment(commentData, pushMethod) {
 }
 
 function loadComments() {
-  if (ajaxed) {
+  if (ajaxed || commentsPage < 0) {
     return;
   }
 
@@ -30,6 +30,7 @@ function loadComments() {
     dataType: 'json',
     beforeSend: () => {
       ajaxed = true;
+      $('#commentsLoader').show();
     },
     success: (comments) => {
       comments.forEach(comment => {
@@ -39,10 +40,11 @@ function loadComments() {
       commentsPage++;
     },
     error: () => {
-
+      commentsPage = -1;
     },
     complete: () => {
       ajaxed = false;
+      $('#commentsLoader').hide();
     }
   });
 }
@@ -99,6 +101,9 @@ $(() => {
 
       $('.carousel-item:first-child').addClass('active');
       $('.slider__thumbs > div:first-child').addClass('active');
+
+      $('#sliderLoader').hide();
+      $('#sliderContainer').fadeIn(300);
     },
     error: () => {
 

@@ -36,6 +36,10 @@ body {
 }
 
 .slider {
+    #sliderContainer {
+        display: none;
+    }
+
     .carousel,
     &__thumbs {
         width: 100%;
@@ -144,6 +148,10 @@ body {
             }
         }
     }
+}
+
+#commentsLoader {
+    display: none;
 }
 
 .commentModal {
