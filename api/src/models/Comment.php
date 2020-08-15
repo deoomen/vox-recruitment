@@ -6,7 +6,7 @@ use VOXApi\Db\DatabaseMysql;
 use VOXApi\Helpers\Logger;
 
 /**
- * Undocumented class
+ * Comment class
  *
  * @category Model
  * @author deoomen <deoomen@pm.me>

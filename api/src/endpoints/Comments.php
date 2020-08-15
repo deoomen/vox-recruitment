@@ -7,8 +7,6 @@ use VOXApi\Helpers\Logger;
 use VOXApi\Models\Comment;
 
 /**
- * Undocumented class
- *
  * @category Api
  * @author deoomen <deoomen@pm.me>
  */

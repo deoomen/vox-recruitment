@@ -5,8 +5,6 @@ namespace VOXApi\Endpoints;
 use VOXApi\Db\DatabaseMysql;
 
 /**
- * Undocumented class
- *
  * @category Api
  * @author deoomen <deoomen@pm.me>
  */
