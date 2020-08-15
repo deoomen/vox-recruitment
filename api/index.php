@@ -1,15 +1,15 @@
 <?php
 
+if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
+    \header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
+    exit;
+}
+
 require "vendor/autoload.php";
 
 use VOXApi\Endpoints\Comments;
 use VOXApi\Endpoints\Slides;
 use VOXApi\Models\Comment;
-
-if (!\in_array($_SERVER["REQUEST_METHOD"], ["GET", "POST"])) {
-    \header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
-    exit;
-}
 
 $api = null;
 $endpoint = \filter_input(
