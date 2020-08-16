@@ -27,3 +27,7 @@ Recruitment task for the VOX company.
     composer install
     composer dumpautoload -o
     ```
+
+4. Create config file based on example with proper data:
+
+    `api/config/config.example.ini` -> `api/config/config.ini`
