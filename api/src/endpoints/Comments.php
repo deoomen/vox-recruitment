@@ -99,13 +99,6 @@ class Comments extends Api
             ];
         }
 
-        // if ($return["status"] === true) {
-            // $return = new Comment((object) [
-            //     "author" => $postData["nick"],
-            //     "text" => $postData["text"]
-            // ]);
-        // }
-
         return $return;
     }
 

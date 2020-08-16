@@ -24,9 +24,9 @@ class Slides extends Api
     }
 
     /**
-     * Undocumented function
+     * Return array of objects representing slides from database
      *
-     * @return Slide[]
+     * @return \VOXApi\Models\Slide[]
      */
     public function getItems(): array
     {
@@ -49,6 +49,13 @@ class Slides extends Api
         return $items;
     }
 
+    /**
+     * Returns 8 photos to slide
+     *
+     * @param int $idSlide slide id
+     *
+     * @return array
+     */
     private function getSlidePhotos(int $idSlide): array
     {
         $stmt = $this->database->prepare(
@@ -70,6 +77,11 @@ class Slides extends Api
         return $photos;
     }
 
+    /**
+     * Return array of objects as array representing slides from database
+     *
+     * @return array
+     */
     public function getItemsAsArray(): array
     {
         $asArray = [];

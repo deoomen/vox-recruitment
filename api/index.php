@@ -12,12 +12,7 @@ use VOXApi\Endpoints\Comments;
 use VOXApi\Endpoints\Slides;
 use VOXApi\Models\Comment;
 
-$api = null;
-$endpoint = \filter_input(
-    \INPUT_GET,
-    "endpoint",
-    \FILTER_SANITIZE_STRING
-);
+$endpoint = \filter_input(\INPUT_GET, "endpoint", \FILTER_SANITIZE_STRING);
 switch ($_SERVER["REQUEST_METHOD"] . $endpoint) {
     case "GETcomments":
         $comments = new Comments();

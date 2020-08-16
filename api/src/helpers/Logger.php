@@ -2,6 +2,10 @@
 
 namespace VOXApi\Helpers;
 
+/**
+ * @category Api
+ * @author deoomen <deoomen@pm.me>
+ */
 class Logger
 {
     public const FILENAME_DATABASE = "db_errors";
@@ -10,7 +14,7 @@ class Logger
     /**
      * Write log to file
      *
-     * @param string $message log text message
+     * @param string $message  log text message
      * @param string $filename log name
      *
      * @return void
