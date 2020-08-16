@@ -10,12 +10,20 @@ Recruitment task for the VOX company.
 
 ## Install
 
-Download or `git clone`.
+1. Download and unpack ZIP or use `git clone`.
 
-```bash
-cd /path/to/www/vox-recruitment
-npm install
-gulp
-cd api
-composer dumpautoload -o
-```
+2. Run database scripts:
+
+    1. `install/vox-recruitment.sql`
+    2. `install/slides.sql`
+
+3. Install dependencies:
+
+    ```bash
+    cd /path/to/www/vox-recruitment
+    npm install
+    gulp
+    cd api
+    composer install
+    composer dumpautoload -o
+    ```
