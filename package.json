@@ -1,6 +1,6 @@
 {
   "name": "vox-recruitment",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Recruitment task for the VOX company.",
   "dependencies": {
     "bootstrap": "^4.5.2",
